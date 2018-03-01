@@ -1,0 +1,17 @@
+{
+  "presets": [
+    ["es2015", {
+      "targets": {
+        "browsers": ["last 2 versions", "safari >= 7"]
+      },
+    "modules": false
+    }]
+  ],
+  "plugins": [
+    "syntax-dynamic-import"
+  ],
+   "env": {
+    "development": {
+    }
+  }
+}

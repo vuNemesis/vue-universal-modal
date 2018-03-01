@@ -1,0 +1,193 @@
+body.modals-open {
+  overflow: hidden;
+}
+
+.vu-modal {
+  &__wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 5000;
+    overflow-x: hidden;
+    overflow-y: auto;
+    transition: opacity .4s ease;
+  }
+
+  &__mask {
+    background-color: rgba(0, 0, 0, .5);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    &--disabled {
+      background-color: rgba(0, 0, 0, 0);
+    }
+  }
+
+  &__cmp {
+    display: flex;
+    flex-direction: column;
+    border-radius: 0px;
+    background: #FFF;
+    box-shadow: 3px 5px 20px #333;
+    margin: 30px auto;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 650px;
+
+    // &--disabled {
+    //   opacity: 0.2;
+
+    //   &::after {
+    //     background: transparent;
+    //     content: '';
+    //     position: absolute;
+    //     top: 0;
+    //     left: 0;
+    //     right: 0;
+    //     bottom: 0;
+    //     z-index: 100;
+    //   }
+    // }
+
+    &--is-center {
+      margin: auto;
+      top: 50%;
+    }
+    &--is-scroll {
+      max-height: 90%;
+    }
+
+    &--is-scroll-fullscreen {
+      max-height: 100%;
+    }
+
+    &--is-fullscreen {
+      width: 100%;
+      min-height: 100%;
+      margin: 0 0;
+    }
+
+    &--is-bottom {
+      bottom: 0;
+    }
+
+    &--is-top {
+      top: 0;
+    }
+
+    &--is-right {
+      right: 0;
+      margin-right: 30px;
+    }
+
+    &--is-left {
+      left: 0;
+      margin-left: 30px;
+    }
+
+    &--xl {
+      width: 1024px;
+    }
+
+    &--lg {
+      width: 850px;
+    }
+
+    &--md {
+      width: 650px;
+    }
+
+    &--sm {
+      width: 550px;
+    }
+
+    &--xs {
+      width: 350px;
+    }
+
+    &--p50 {
+      width: 50%;
+    }
+
+    &--p70 {
+      width: 70%;
+    }
+
+    &--p90 {
+      width: 90%;
+    }
+
+    &-body {
+      padding: 1em;
+      &::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      &::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: darkgrey;
+        outline: 1px solid slategrey;
+      }
+    }
+
+    &-header {
+      user-select: none;
+      border-bottom: 1px solid #EEE;
+      padding: 1em;
+      text-align: left;
+      &-title {
+        font-size: 16px;
+        font-weight: 800;
+      }
+    }
+
+    &-footer {
+      border-top: solid 1px #EEE;
+      user-select: none;
+      padding: 1em;
+      text-align: right;
+    }
+  }
+
+  &__close-btn {
+    user-select: none;
+    position: absolute;
+    right: 12px;
+    top: 5px;
+    line {
+      stroke: grey;
+      stroke-width: 2;
+    }
+    &:hover {
+      cursor: pointer;
+      line {
+        stroke: black;
+      }
+    }
+  }
+}
+
+// .vuModal-enter,
+// .vuModal-leave-active {
+//   opacity: 0;
+// }
+
+// .vuModal-enter .vu-modal__cmp,
+// .vuModal-leave-active .vu-modal__cmp {
+//   opacity: 0;
+//   transform: translateX(-50%) translateY(-30px) scale(0.95);
+// }
+
+// .vuModal-enter-active, .vuModal-leave-active {
+//   transition: all 1s;
+// }
+// .vuModal-enter, .vuModal-leave-to /* .list-leave-active до версии 2.1.8 */ {
+//   opacity: 0;
+// }
