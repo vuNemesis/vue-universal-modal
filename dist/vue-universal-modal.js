@@ -138,6 +138,12 @@ var ModalCmp = {
       default: true
     }
   },
+  mounted: function mounted() {
+    if (this.$el.focus) {
+      this.$el.focus();
+    }
+  },
+
   computed: {
     propsData: function propsData() {
       return this.$parent.$vnode.data.props && this.$parent.$vnode.data.props.vModal ? this.$parent.$vnode.data.props.vModal : this.$props;
@@ -206,6 +212,7 @@ var ModalCmp = {
 
     return h('div', {
       style: style,
+      attrs: { tabindex: -1 },
       class: ['vu-modal__cmp', {
         'vu-modal__cmp--is-fullscreen': fullscreen,
         'vu-modal__cmp--is-center': center,
@@ -230,10 +237,18 @@ var modalWrapper = {
   },
   mounted: function mounted() {
     if (typeof document !== 'undefined') {
+      document.body.addEventListener('keydown', this.handleTabKey);
+    }
+
+    if (typeof document !== 'undefined') {
       document.body.addEventListener('keyup', this.handleEscapeKey);
     }
   },
   destroyed: function destroyed() {
+    if (typeof document !== 'undefined') {
+      document.body.removeEventListener('keydown', this.handleTabKey);
+    }
+
     if (typeof document !== 'undefined') {
       document.body.removeEventListener('keyup', this.handleEscapeKey);
     }
@@ -375,6 +390,11 @@ var modalWrapper = {
       });
 
       this.doClose(localIndex);
+    },
+    handleTabKey: function handleTabKey(e) {
+      if (e.keyCode === 9 && this.modals.length) {
+        e.preventDefault();
+      }
     },
     handleEscapeKey: function handleEscapeKey(e) {
       if (e.keyCode === 27 && this.modals.length) {

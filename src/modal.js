@@ -56,6 +56,11 @@ export default {
       default: true
     }
   },
+  mounted() {
+    if(this.$el.focus) {
+      this.$el.focus()
+    }
+  },
   computed: {
     propsData() {
       return (this.$parent.$vnode.data.props && this.$parent.$vnode.data.props.vModal) ? this.$parent.$vnode.data.props.vModal : this.$props
@@ -117,6 +122,7 @@ export default {
 
     return h('div', { 
       style,
+      attrs: { tabindex: -1},
       class: ['vu-modal__cmp', {
           'vu-modal__cmp--is-fullscreen': fullscreen,
           'vu-modal__cmp--is-center': center,

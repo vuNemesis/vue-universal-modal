@@ -11,11 +11,19 @@ export default {
   },
   mounted() {
     if (typeof document !== 'undefined') {
+      document.body.addEventListener('keydown', this.handleTabKey)
+    }
+
+    if (typeof document !== 'undefined') {
       document.body.addEventListener('keyup', this.handleEscapeKey)
     }
   },
   destroyed() {
     if (typeof document !== 'undefined') {
+      document.body.removeEventListener('keydown', this.handleTabKey)
+    }
+
+     if (typeof document !== 'undefined') {
       document.body.removeEventListener('keyup', this.handleEscapeKey)
     }
   },
@@ -164,6 +172,12 @@ export default {
       });
 
       this.doClose(localIndex);
+    },
+
+     handleTabKey(e) {
+       if (e.keyCode === 9 && this.modals.length) {
+         e.preventDefault()
+       }
     },
 
     handleEscapeKey(e) {
